@@ -52,21 +52,17 @@ So far, there has not been a single line of code, and there has not been a singl
 Writing it down is just to sort out your thoughts, and it may be a little helpful for you who are thinking about similar questions. 
 
 
-flowchart TD
+
+    flowchart TD
     subgraph InformationCollection ["Information Collection Layer (Perception)"]
         A1[Static Analysis Engine<br/>- Binary Parsing<br/>- Decompilation<br/>- String Extraction<br/>- Import Table]
         A2[Dynamic Tracing Engine<br/>- API Hook<br/>- Component Interaction<br/>- Network Communication<br/>- File Operations]
         A3[Environment Detection Engine<br/>- Dependency Analysis<br/>- Config Parsing<br/>- Language Detection<br/>- Framework Fingerprint]
     end
-
     B["Knowledge Construction Layer (Reasoning)<br/>AI Analysis Engine (Local LLM + Knowledge Graph)<br/>- Identify Software Architecture<br/>- Extract Component List & Functions<br/>- Infer Business Logic<br/>- Generate Tech Stack Summary<br/>Output: Structured Knowledge Base"]
-    
     C["Test Reasoning Layer (Decision)<br/>Skill Scheduler + MCP Code Assistant<br/>- Generate Test Hypotheses<br/>- Orchestrate Test Skills<br/>- Generate Test Code for MCP Execution"]
-    
     D["Interactive Verification Layer (Execution)<br/>Target Environment (VM/Container/Process)<br/>- Receive Test Commands (MCP)<br/>- Execute Test Code<br/>- Feedback Results"]
-    
     E["Closed-Loop Iteration (Learning)<br/>- Success: Strengthen Knowledge Hypotheses<br/>- Failure: Correct & Generate New Tests<br/>- Unknown Behavior: Trigger Deep Collection"]
-
     InformationCollection -->|Raw Data: API Sequences, Calls, Code Snippets| B
     B -->|Components, API Dependencies, Logic Hypotheses| C
     C -->|Test Scripts, Test Parameters| D
