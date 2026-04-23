@@ -51,4 +51,59 @@ So far, there has not been a single line of code, and there has not been a singl
 
 Writing it down is just to sort out your thoughts, and it may be a little helpful for you who are thinking about similar questions. 
 
+
+┌─────────────────────────────────────────────────────────────────┐
+│ Orchestrator – Deterministic Sequential Scheduling               │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ Information Collection Layer                                      │
+│ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────────────────┐  │
+│ │Static Analysis│ │Dynamic Capture│ │Environment Detection│ │AI Focus API Suggestions│
+│ └──────────┘ └──────────┘ └──────────┘ └────────────────────┘  │
+│                       Output: raw_profile.json                   │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ Knowledge Construction Layer                                     │
+│ ┌────────────────────────────────────────────────────────────┐  │
+│ │ LLM Analysis → Generate Vulnerability Hypotheses (Type, Confidence, Evidence, Target Details) │
+│ └────────────────────────────────────────────────────────────┘  │
+│                       Output: hypotheses.json                   │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ Testing & Reasoning Layer                                        │
+│ ┌────────────────────────────────────────────────────────────┐  │
+│ │ AI Select Atomic Exploits + Arrange Execution Order + Fill Parameters (URL/API/Conditions) │
+│ └────────────────────────────────────────────────────────────┘  │
+│                       Output: test_plan.json                     │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ Verification Layer (AI-Free Execution)                           │
+│ ┌────────────────────────────────────────────────────────────┐  │
+│ │ For each test case: Spawn QEMU Sandbox → Execute Attack Chain → Record Crash Log → Destroy Instance │
+│ └────────────────────────────────────────────────────────────┘  │
+│                       Output: verification_results.json          │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ Closed-Loop Iteration Layer                                      │
+│ ┌────────────────────────────────────────────────────────────┐  │
+│ │ AI Result Analysis → Update Confidence Score → Retest / Backtrack / Terminate Task │
+│ └────────────────────────────────────────────────────────────┘  │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+                         ┌─────────────┐
+                         │ Final Report│
+                         └─────────────┘
+
+
 ---
